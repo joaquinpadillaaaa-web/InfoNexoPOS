@@ -136,6 +136,23 @@
   .dark { background: var(--dark); color: var(--dark-ink); }
   .dark .sec-head p { color: var(--dark-mut); }
 
+
+  .prod .foto { background:#fff; border:1px solid var(--line); border-radius:16px; aspect-ratio:1/1; display:grid; place-items:center; overflow:hidden; margin-bottom:14px; }
+  .prod .foto img { width:100%; height:100%; object-fit:contain; transition:transform .5s var(--ease); }
+  .prod:hover .foto img { transform:scale(1.06); }
+
+  /* bandas: cada sección con su propio fondo */
+  #empezar { background:var(--bg); }
+  #beneficios { background:#fffaf0; border-block:1px solid var(--line); }
+  #local { background:var(--bg2); }
+  #somos { background:linear-gradient(180deg,#fde9d6,#fbd9bb); border-top:1px solid #f0c9a3; }
+  #medida { background:var(--bg); background-image:radial-gradient(rgba(28,23,18,.09) 1.2px,transparent 1.4px); background-size:22px 22px; }
+  #equipa { background:#fffaf0; border-block:1px solid var(--line); }
+  #planes { background:var(--bg2); }
+  #preguntas { background:var(--bg); }
+  #rubros { border-block:4px solid var(--brand); }
+  footer { border-top:0; }
+
   /* aparición al hacer scroll */
   .rv { opacity: 0; transform: translateY(34px); transition: opacity .8s var(--ease), transform .8s var(--ease); transition-delay: calc(var(--d, 0) * 90ms); }
   .rv.vis { opacity: 1; transform: none; }
@@ -369,19 +386,19 @@
     <div class="sec-head rv">
       <span class="kicker">Cómo empezar</span>
       <h2>De la primera conversación a tu primera venta</h2>
-      <p>Cambiar de sistema no tiene por qué ser complicado. Lo hacemos contigo, paso a paso.</p>
+      <p>Cambiar de sistema no tiene por qué ser complicado. Te guiamos paso a paso.</p>
     </div>
     <ol class="pasos4">
       <li class="rv" style="--d:0"><span class="n">1</span><b>Conversamos</b><p>Nos cuentas qué vendes y cómo trabaja tu equipo.</p></li>
-      <li class="rv" style="--d:1"><span class="n">2</span><b>Armamos tu local</b><p>Cargamos tu carta o tus productos, tus mesas y los usuarios de tu equipo.</p></li>
-      <li class="rv" style="--d:2"><span class="n">3</span><b>Te acompañamos</b><p>Mostramos a tu equipo cómo usarlo, hasta que se sienta cómodo.</p></li>
+      <li class="rv" style="--d:1"><span class="n">2</span><b>Armas tu local</b><p>Te enseñamos a subir tu carta o productos, a armar tus mesas y tu equipo de trabajo.</p></li>
+      <li class="rv" style="--d:2"><span class="n">3</span><b>Preguntas lo que necesites</b><p>Pregúntanos cómo se usan algunas funciones, hasta que te sientas cómodo.</p></li>
       <li class="rv" style="--d:3"><span class="n">4</span><b>Empiezas a vender</b><p>Y seguimos cerca por si necesitas ajustar algo.</p></li>
     </ol>
   </div>
 </section>
 
 <!-- BENEFICIOS -->
-<section id="beneficios" style="padding-top:20px">
+<section id="beneficios">
   <div class="wrap">
     <div class="sec-head rv">
       <span class="kicker">Lo importante</span>
@@ -421,7 +438,7 @@
 </section>
 
 <!-- EN EL LOCAL -->
-<section id="local" style="padding-top:0">
+<section id="local">
   <div class="wrap">
     <div class="sec-head rv">
       <span class="kicker">En el local, de verdad</span>
@@ -521,14 +538,14 @@
       <ul>
         <li><i>⚙️</i>Funciones ajustadas a cómo trabajas</li>
         <li><i>🖨️</i>Impresoras térmicas de 58 mm y 80 mm</li>
-        <li><i>🤝</i>Te acompañamos en la puesta en marcha</li>
+        <li><i>🤝</i>Te enseñamos y resolvemos tus dudas</li>
       </ul>
     </div>
   </div>
 </section>
 
 <!-- EQUIPA TU LOCAL -->
-<section id="equipa" style="padding-top:0">
+<section id="equipa">
   <div class="wrap">
     <div class="sec-head rv">
       <span class="kicker">Equipa tu local</span>
@@ -536,16 +553,16 @@
       <p>Algunas opciones para que tengas todo listo. Si tienes dudas sobre cuál elegir, escríbenos y te orientamos.</p>
     </div>
     <div class="equipo">
-      <div class="prod rv" style="--d:0"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 9V3h10v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M7 14h10v7H7z"/></svg></div><h3>Impresora térmica</h3><p>Para imprimir boletas y comandas en tu local.</p><a class="btn btn-ml" href="https://click1.mercadolibre.cl/mclics/clicks/external/MLC/count?a=TeDz3k9oGx3s4pxpa7idivc%2FIfcTUJzyDTNkHeCf%2FgoI9J5DesUEyHneoRD2JCvoYEOuoO84prboXD%2Fmly8RwYH4YTuYyxh4YlA7ziV1Zzhr1j4Cam5t1Um8W%2F9Rt8pRtUR4SwOQrr9ccavdWmIwM4Cg%2BwuRmLvhXiGqsRa8WTUOWyhxut5RLClPzxsRMoqAIz1GfK7KZNnGOPmYamlN05CD026UhpjmIHUAY0KkbWdfswsX8YRFV6IHkpktleumLJFGbqYyL0Z%2FuGBCB4ki6w0rsSK2PHEl8yuTq1ldfOoulIAlku3eueYatAIoKT553JqqISX%2FRGKzg7l6pgsPVjo%2Ftt3Nj0VgJjmXhJT4nQS3fd6WWzp8nrDXcTFyAvYjJcCIWOJrauW2hGvhSgRdL6pI46vuNqRYQO462uw8T20cMTUTXzvoczXr0LWWMjY1g13SqNeml2vJmh9ci9JstdTW7e8pdKAnIMUCNY6S5YDNHeT5jI0fFv2Cchhf6uM3FLAxyW1%2FnVXetCYEDAEwq%2Fye%2FuAStR3VKArvz44TsYa3d%2B48U6ycd9SYinT6Nu%2BShb4qKVX9OUqaKKh%2BCxVaNtF4MpZKWjQZEfzmJfFmP73mOVQia7Li1Yn4pqODUMHbM24PHChHLKg94g9GkrQ4NKdTgrWgJxZUEm7Nel8O21EWchpU3Nq6gmYIA8GwgNPvaWdyUZWhy29y2ZRvx9%2BkNyG7UD6jeCaws%2FXmacRSpHw2VfX7tYQpJiMWK0MyyTr0SlcfYLZDSVKDTXg3G%2FgLjklZ8wzgCIz8EJ0Q%2B0LXwODuG0ZVLr9KWp9Ynk2g8Z3wNKpG9dyrfZIU4EKpWSyt8l6n2aUNvwrgkCyBrZRHjSrTlkyqPhtffnp2%2Fj8OJgcNtWyaGQsSoxlJKbTwAKcTysmPxJr%2FmngjaVPEbOfywZ4DMeb9uF3WqXwycG5IYIqH%2FxUjrozfkILJTHcYC5SgOKY%3D&pdp_filters=item_id%3AMLC1616856319#polycard_client=search-desktop&is_advertising=true&searchVariation=MLCU3194951628&backend_model=search-backend&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=4&type=pad&tracking_id=893253a9-5e30-482f-a12f-de635c42b10e&wid=MLC1616856319&sid=search" target="_blank" rel="noopener sponsored">Ver en Mercado Libre ↗</a></div>
-      <div class="prod rv" style="--d:1"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 9V3h10v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M7 14h10v7H7z"/></svg></div><h3>Impresora de boletas 58 mm</h3><p>Impresora USB de rollo de 58 mm para boletas y tickets.</p><a class="btn btn-ml" href="https://www.mercadolibre.cl/impresora-boletas-usb-rollo-58mm-tickets-recibo/p/MLC40655441#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=6&type=product&tracking_id=bbdc489a-3083-4aa0-99a9-039ef29b1c2b&wid=MLC4111275014&sid=search" target="_blank" rel="noopener sponsored">Ver en Mercado Libre ↗</a></div>
-      <div class="prod rv" style="--d:2"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"/><path d="M7 9v6M10 9v6M13 9v6M16 9v6"/></svg></div><h3>Lector de códigos de barras</h3><p>Lector inalámbrico 2.4G con conexión USB para tu mostrador.</p><a class="btn btn-ml" href="https://www.mercadolibre.cl/lector-escaner-de-codigo-de-barras-inalambrico-24g-pistola-color-negro-tipo-de-conector-del-cable-usb/p/MLC37883561?pdp_filters=item_id%3AMLC2534781610&from=gshop&matt_tool=31981837&matt_word=&matt_source=google&matt_campaign_id=22116391419&matt_ad_group_id=192538753376&matt_match_type=&matt_network=g&matt_device=c&matt_creative=794146495131&matt_keyword=&matt_ad_position=&matt_ad_type=pla&matt_merchant_id=735119080&matt_product_id=MLC37883561-product&matt_product_partition_id=2494470287653&matt_target_id=aud-2485766214916:pla-2494470287653&cq_src=google_ads&cq_cmp=22116391419&cq_net=g&cq_plt=gp&cq_med=pla&gad_source=1&gad_campaignid=22116391419&gbraid=0AAAAADxxu6oHSxTMRCMjucQL0fSMxKui-&gclid=CjwKCAjw_pzWBhAkEiwAwDCi1ezKZAfhIio2BZYDR-EzXNzTVBc1Nxbg34GnMm9fWz5Wokl7LwWhjRoCzLwQAvD_BwE" target="_blank" rel="noopener sponsored">Ver en Mercado Libre ↗</a></div>
+      <div class="prod rv" style="--d:0"><div class="foto"><img src="img/impresora-80.jpg" alt="Impresora térmica entregando un recibo" loading="lazy" width="700" height="700"></div><h3>Impresora térmica</h3><p>Para imprimir boletas y comandas en tu local.</p><a class="btn btn-ml" href="https://click1.mercadolibre.cl/mclics/clicks/external/MLC/count?a=TeDz3k9oGx3s4pxpa7idivc%2FIfcTUJzyDTNkHeCf%2FgoI9J5DesUEyHneoRD2JCvoYEOuoO84prboXD%2Fmly8RwYH4YTuYyxh4YlA7ziV1Zzhr1j4Cam5t1Um8W%2F9Rt8pRtUR4SwOQrr9ccavdWmIwM4Cg%2BwuRmLvhXiGqsRa8WTUOWyhxut5RLClPzxsRMoqAIz1GfK7KZNnGOPmYamlN05CD026UhpjmIHUAY0KkbWdfswsX8YRFV6IHkpktleumLJFGbqYyL0Z%2FuGBCB4ki6w0rsSK2PHEl8yuTq1ldfOoulIAlku3eueYatAIoKT553JqqISX%2FRGKzg7l6pgsPVjo%2Ftt3Nj0VgJjmXhJT4nQS3fd6WWzp8nrDXcTFyAvYjJcCIWOJrauW2hGvhSgRdL6pI46vuNqRYQO462uw8T20cMTUTXzvoczXr0LWWMjY1g13SqNeml2vJmh9ci9JstdTW7e8pdKAnIMUCNY6S5YDNHeT5jI0fFv2Cchhf6uM3FLAxyW1%2FnVXetCYEDAEwq%2Fye%2FuAStR3VKArvz44TsYa3d%2B48U6ycd9SYinT6Nu%2BShb4qKVX9OUqaKKh%2BCxVaNtF4MpZKWjQZEfzmJfFmP73mOVQia7Li1Yn4pqODUMHbM24PHChHLKg94g9GkrQ4NKdTgrWgJxZUEm7Nel8O21EWchpU3Nq6gmYIA8GwgNPvaWdyUZWhy29y2ZRvx9%2BkNyG7UD6jeCaws%2FXmacRSpHw2VfX7tYQpJiMWK0MyyTr0SlcfYLZDSVKDTXg3G%2FgLjklZ8wzgCIz8EJ0Q%2B0LXwODuG0ZVLr9KWp9Ynk2g8Z3wNKpG9dyrfZIU4EKpWSyt8l6n2aUNvwrgkCyBrZRHjSrTlkyqPhtffnp2%2Fj8OJgcNtWyaGQsSoxlJKbTwAKcTysmPxJr%2FmngjaVPEbOfywZ4DMeb9uF3WqXwycG5IYIqH%2FxUjrozfkILJTHcYC5SgOKY%3D&pdp_filters=item_id%3AMLC1616856319#polycard_client=search-desktop&is_advertising=true&searchVariation=MLCU3194951628&backend_model=search-backend&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=4&type=pad&tracking_id=893253a9-5e30-482f-a12f-de635c42b10e&wid=MLC1616856319&sid=search" target="_blank" rel="noopener sponsored">Ver en Mercado Libre ↗</a></div>
+      <div class="prod rv" style="--d:1"><div class="foto"><img src="img/impresora-58.jpg" alt="Impresora térmica USB de 58 mm con rollo de papel" loading="lazy" width="700" height="700"></div><h3>Impresora de boletas 58 mm</h3><p>Impresora USB de rollo de 58 mm para boletas y tickets.</p><a class="btn btn-ml" href="https://www.mercadolibre.cl/impresora-boletas-usb-rollo-58mm-tickets-recibo/p/MLC40655441#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=6&type=product&tracking_id=bbdc489a-3083-4aa0-99a9-039ef29b1c2b&wid=MLC4111275014&sid=search" target="_blank" rel="noopener sponsored">Ver en Mercado Libre ↗</a></div>
+      <div class="prod rv" style="--d:2"><div class="foto"><img src="img/lector.jpg" alt="Lector de códigos de barras inalámbrico con receptor USB" loading="lazy" width="700" height="700"></div><h3>Lector de códigos de barras</h3><p>Lector inalámbrico 2.4G con conexión USB para tu mostrador.</p><a class="btn btn-ml" href="https://www.mercadolibre.cl/lector-escaner-de-codigo-de-barras-inalambrico-24g-pistola-color-negro-tipo-de-conector-del-cable-usb/p/MLC37883561?pdp_filters=item_id%3AMLC2534781610&from=gshop&matt_tool=31981837&matt_word=&matt_source=google&matt_campaign_id=22116391419&matt_ad_group_id=192538753376&matt_match_type=&matt_network=g&matt_device=c&matt_creative=794146495131&matt_keyword=&matt_ad_position=&matt_ad_type=pla&matt_merchant_id=735119080&matt_product_id=MLC37883561-product&matt_product_partition_id=2494470287653&matt_target_id=aud-2485766214916:pla-2494470287653&cq_src=google_ads&cq_cmp=22116391419&cq_net=g&cq_plt=gp&cq_med=pla&gad_source=1&gad_campaignid=22116391419&gbraid=0AAAAADxxu6oHSxTMRCMjucQL0fSMxKui-&gclid=CjwKCAjw_pzWBhAkEiwAwDCi1ezKZAfhIio2BZYDR-EzXNzTVBc1Nxbg34GnMm9fWz5Wokl7LwWhjRoCzLwQAvD_BwE" target="_blank" rel="noopener sponsored">Ver en Mercado Libre ↗</a></div>
     </div>
     <p class="equipo-nota rv">Son enlaces a Mercado Libre. Compra donde prefieras: NexoPOS funciona con impresoras térmicas de 58 y 80 mm.</p>
   </div>
 </section>
 
 <!-- PLANES -->
-<section id="planes" style="padding-top:0">
+<section id="planes">
   <div class="wrap">
     <div class="sec-head rv">
       <span class="kicker">Planes</span>
@@ -582,7 +599,7 @@
 </section>
 
 <!-- PREGUNTAS -->
-<section id="preguntas" style="padding-top:0">
+<section id="preguntas">
   <div class="wrap">
     <div class="sec-head rv"><span class="kicker">Preguntas frecuentes</span><h2>Lo que más nos preguntan</h2></div>
     <div class="faq rv">
