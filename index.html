@@ -205,6 +205,30 @@
   .firma { margin-top: 26px; font-weight: 800; font-size: 17px; display: flex; align-items: center; gap: 12px; }
   .firma::before { content: ''; width: 36px; height: 3px; background: var(--brand); border-radius: 2px; }
 
+
+  /* cómo empezar */
+  .pasos4 { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; counter-reset: p; position: relative; }
+  .pasos4::before { content: ''; position: absolute; left: 6%; right: 6%; top: 28px; height: 2px; background: repeating-linear-gradient(90deg, var(--line) 0 8px, transparent 8px 16px); }
+  .pasos4 li { position: relative; background: transparent; padding: 0 6px; transition: transform .3s var(--ease); }
+  .pasos4 li:hover { transform: translateY(-6px); }
+  .pasos4 .n { position: relative; display: grid; place-items: center; width: 56px; height: 56px; border-radius: 18px; background: var(--card); border: 2px solid var(--brand); color: var(--brand); font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 20px; margin-bottom: 18px; box-shadow: 0 10px 22px -12px rgba(229,83,10,.55); transition: background .25s, color .25s; }
+  .pasos4 li:hover .n { background: var(--brand); color: #fff; }
+  .pasos4 b { display: block; font-size: 18px; margin-bottom: 4px; }
+  .pasos4 p { margin: 0; color: var(--muted); font-size: 15px; }
+
+  /* equipa tu local */
+  .equipo { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .prod { background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: 26px; display: flex; flex-direction: column; gap: 6px; transition: transform .35s var(--ease), border-color .3s, box-shadow .35s; }
+  .prod:hover { transform: translateY(-8px); border-color: var(--brand); box-shadow: 0 28px 44px -28px rgba(229,83,10,.55); }
+  .prod .ic { width: 56px; height: 56px; border-radius: 16px; display: grid; place-items: center; background: var(--brand-soft, #fde7d6); color: var(--brand); margin-bottom: 12px; }
+  .prod .ic svg { width: 30px; height: 30px; }
+  .prod h3 { margin: 0; font-size: 19px; }
+  .prod p { margin: 0 0 16px; color: var(--muted); font-size: 15px; flex: 1; }
+  .prod .btn { width: 100%; }
+  .btn-ml { background: #ffe600; color: #2d3277; }
+  .btn-ml:hover { background: #f5db00; transform: translateY(-2px); }
+  .equipo-nota { margin-top: 20px; color: var(--muted); font-size: 14.5px; }
+
   /* a tu medida */
   .medida { background: var(--card); border: 1px solid var(--line); border-radius: 28px; padding: clamp(30px, 5vw, 60px); display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center; position: relative; overflow: hidden; }
   .medida::after { content: ''; position: absolute; width: 360px; height: 360px; right: -120px; top: -140px; border-radius: 50%; background: radial-gradient(circle, rgba(229,83,10,.22), transparent 70%); }
@@ -264,6 +288,9 @@
   @media (max-width: 900px) {
     nav.links a:not(.btn):not(.ig-ico) { display: none; }
     .tour, .ben-item, .panel.on, .medida, .somos { grid-template-columns: 1fr; gap: 24px; }
+    .pasos4 { grid-template-columns: 1fr 1fr; gap: 28px 16px; }
+    .pasos4::before { display: none; }
+    .equipo { grid-template-columns: 1fr; }
     .valores { grid-template-columns: 1fr; }
     .ben-item:nth-child(even) .ben-txt { order: 0; }
     .planes { grid-template-columns: 1fr; }
@@ -295,7 +322,7 @@
   <div class="wrap">
     <a class="logo" href="#"><img src="logo.svg" alt="" width="34" height="34"><span>NEXO<b>POS</b></span></a>
     <nav class="links">
-      <a href="#recorrido">Cómo funciona</a>
+      <a href="#empezar">Cómo empezar</a>
       <a href="#rubros">Restaurantes y comercios</a>
       <a href="#somos">Quiénes somos</a>
       <a href="#medida">A tu medida</a>
@@ -317,7 +344,7 @@
       <p class="lead in" style="--d:2">Toma pedidos, cobra, cierra la caja y mira cuánto vendiste, desde el computador, la tablet o el celular. Sin instalar nada.</p>
       <div class="cta in" style="--d:3">
         <a class="btn btn-main" href="#contacto" data-wa="Hola, quiero cotizar NexoPOS para mi negocio."><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.2 14c-.2.6-1.300 1.200-1.800 1.200-.5.1-1 .2-3.300-.7a11.500 11.500 0 0 1-4.700-4.200c-.4-.5-1.200-1.600-1.200-3 0-1.400.7-2 1-2.300.2-.3.5-.3.700-.3h.5c.2 0 .4 0 .6.500l.8 2c.1.200.1.300 0 .500l-.3.500-.4.400c-.1.200-.3.300-.1.600.2.300.8 1.300 1.700 2.100 1.100 1 2.100 1.300 2.400 1.400.3.100.5.100.6-.1l.9-1.100c.2-.3.400-.2.600-.1l1.900.9c.3.100.5.200.5.300.1.200.1.800-.1 1.400Z"/></svg>Cotizar por WhatsApp</a>
-        <a class="btn btn-line" href="#recorrido">Ver cómo funciona</a>
+        <a class="btn btn-line" href="#beneficios">Ver cómo funciona</a>
       </div>
       <ul class="checks in" style="--d:4">
         <li>Sin instalar nada</li>
@@ -326,9 +353,8 @@
       </ul>
     </div>
     <div class="stage" id="stage">
-      <div class="chip c1"><i>🍽️</i><div>Pedido enviado a cocina<small>Mesa 4 · hace un momento</small></div></div>
-      <div class="chip c2"><i>📅</i><div>Mesa 6 reservada<small>Hoy a las 21:00</small></div></div>
-      <div class="chip c3"><i>💵</i><div>Caja al día<small>Efectivo, tarjeta y transferencia</small></div></div>
+
+
       <div class="phone"><img src="img/cel-pedido.jpg" width="716" height="1404" alt="El mismo sistema en un celular: ticket de una mesa con el pedido" ></div>
       <div class="shot" id="heroShot"><div class="bar"><i></i><i></i><i></i></div><img src="img/pos-restaurante.jpg" width="1366" height="639" alt="Punto de venta de NexoPOS con la carta de un restaurante y el ticket de una mesa"></div>
     </div>
@@ -337,24 +363,20 @@
 
 <div class="cinta" aria-hidden="true"><div class="pista" id="pista"></div></div>
 
-<!-- RECORRIDO INTERACTIVO -->
-<section id="recorrido">
+<!-- CÓMO EMPEZAR -->
+<section id="empezar">
   <div class="wrap">
     <div class="sec-head rv">
-      <span class="kicker">Un turno cualquiera</span>
-      <h2>Así se ve un día en tu local</h2>
-      <p>Toca cada paso para ver la pantalla real del sistema.</p>
+      <span class="kicker">Cómo empezar</span>
+      <h2>De la primera conversación a tu primera venta</h2>
+      <p>Cambiar de sistema no tiene por qué ser complicado. Lo hacemos contigo, paso a paso.</p>
     </div>
-    <div class="tour rv">
-      <div class="pasos" id="pasos">
-        <button class="paso on auto" data-img="img/mesas.jpg" data-alt="Plano de mesas con una mesa reservada a las 21:00"><span class="n">1</span><span><b>Mira tu salón</b><p>El plano muestra qué mesas están libres, reservadas u ocupadas, en vivo.</p></span><span class="tiempo"></span></button>
-        <button class="paso" data-img="img/pos-restaurante.jpg" data-alt="Punto de venta con la carta y el ticket de una mesa"><span class="n">2</span><span><b>Toma el pedido</b><p>El garzón arma el pedido en la mesa desde su celular o tablet.</p></span><span class="tiempo"></span></button>
-        <button class="paso" data-img="img/comandas.jpg" data-alt="Pantalla de comandas con pedidos pendientes, en preparación y listos"><span class="n">3</span><span><b>Cocina y barra lo preparan</b><p>Cada estación ve sus pedidos y los marca como listos.</p></span><span class="tiempo"></span></button>
-        <button class="paso" data-img="img/caja.jpg" data-alt="Pantalla de caja con el total vendido y el desglose por medio de pago"><span class="n">4</span><span><b>Cobra y cuadra la caja</b><p>Ves cuánto entró en efectivo, tarjeta y transferencia, y cierras el turno.</p></span><span class="tiempo"></span></button>
-        <button class="paso" data-img="img/reportes.jpg" data-alt="Reporte de ventas con gráfico de ventas por día"><span class="n">5</span><span><b>Entiende cómo te fue</b><p>Ventas por día, por hora y por producto, para decidir mejor.</p></span><span class="tiempo"></span></button>
-      </div>
-      <div class="visor"><div class="shot hov"><div class="bar"><i></i><i></i><i></i></div><img id="visorImg" src="img/mesas.jpg" width="1366" height="639" alt="Plano de mesas con una mesa reservada a las 21:00"></div></div>
-    </div>
+    <ol class="pasos4">
+      <li class="rv" style="--d:0"><span class="n">1</span><b>Conversamos</b><p>Nos cuentas qué vendes y cómo trabaja tu equipo.</p></li>
+      <li class="rv" style="--d:1"><span class="n">2</span><b>Armamos tu local</b><p>Cargamos tu carta o tus productos, tus mesas y los usuarios de tu equipo.</p></li>
+      <li class="rv" style="--d:2"><span class="n">3</span><b>Te acompañamos</b><p>Mostramos a tu equipo cómo usarlo, hasta que se sienta cómodo.</p></li>
+      <li class="rv" style="--d:3"><span class="n">4</span><b>Empiezas a vender</b><p>Y seguimos cerca por si necesitas ajustar algo.</p></li>
+    </ol>
   </div>
 </section>
 
@@ -404,7 +426,7 @@
     <div class="sec-head rv">
       <span class="kicker">En el local, de verdad</span>
       <h2>El garzón pide desde el celular y la comanda sale en tu impresora</h2>
-      <p>Esto es NexoPOS funcionando en un celular y en una impresora térmica. Capturas y foto reales, sin montajes.</p>
+      <p>Así se ve NexoPOS funcionando en un celular y en una impresora térmica.</p>
     </div>
     <div class="local">
       <div class="rv" style="--d:0"><div class="phone"><img src="img/cel-carta.jpg" loading="lazy" width="716" height="1404" alt="Carta de productos en un celular"></div><p class="pcap">Elige los productos</p></div>
@@ -424,7 +446,7 @@
     </div>
     <div class="tabs rv" role="tablist" id="tabs">
       <span class="pill" id="pill"></span>
-      <button role="tab" aria-selected="true" aria-controls="p-rest" id="t-rest">Restaurantes y cafés</button>
+      <button role="tab" aria-selected="true" aria-controls="p-rest" id="t-rest">Restaurantes</button>
       <button role="tab" aria-selected="false" aria-controls="p-tienda" id="t-tienda">Tiendas y comercios</button>
     </div>
 
@@ -473,7 +495,7 @@
       </div>
       <div class="txt rv der">
         <p>NexoPOS nació de una pregunta simple: ¿por qué los sistemas para vender son tan caros y tan difíciles justo para quienes más los necesitan?</p>
-        <p>Somos un equipo de estudiantes de psicología, y nuestro trabajo es entender a las personas: cómo se mueve un garzón en la hora punta, qué siente un dueño cuando la caja no cuadra, por qué un sistema complicado termina guardado en un cajón.</p>
+        <p>Somos un equipo de estudiantes de psicología, y nuestro trabajo es entender a las personas: cómo se mueve un garzón en la hora punta, qué siente un dueño cuando la caja no cuadra, por qué muchos locales terminan sin usar todas las funciones de su sistema.</p>
         <p>Con eso en mente creamos algo simple de usar, que se adapta a cada local y que facilita el acceso a más negocios, sin cobrar de más.</p>
         <div class="firma">Detrás de cada sistema hay personas. Nos importan las tuyas.</div>
       </div>
@@ -493,7 +515,7 @@
       <div style="position:relative;z-index:1">
         <span class="kicker">Hecho contigo</span>
         <h2>Tu experiencia nos importa</h2>
-        <p>Si lo necesitas, podemos modificar el código de la página para que haya opciones que se adecúen a tus necesidades. NexoPOS crece con tu local, no al revés.</p>
+        <p>Si lo necesitas, podemos modificar el código de la página para que haya opciones que se adecúen a tus necesidades. NexoPOS crece con tu local, y tú llegas a otro nivel con nosotros.</p>
         <a class="btn btn-main" href="#contacto" data-wa="Hola, me gustaría contarles qué necesita mi local.">Cuéntanos qué necesitas</a>
       </div>
       <ul>
@@ -502,6 +524,23 @@
         <li><i>🤝</i>Te acompañamos en la puesta en marcha</li>
       </ul>
     </div>
+  </div>
+</section>
+
+<!-- EQUIPA TU LOCAL -->
+<section id="equipa" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Equipa tu local</span>
+      <h2>Impresoras y lectores para tu negocio</h2>
+      <p>Algunas opciones para que tengas todo listo. Si tienes dudas sobre cuál elegir, escríbenos y te orientamos.</p>
+    </div>
+    <div class="equipo">
+      <div class="prod rv" style="--d:0"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 9V3h10v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M7 14h10v7H7z"/></svg></div><h3>Impresora térmica</h3><p>Para imprimir boletas y comandas en tu local.</p><a class="btn btn-ml" href="https://click1.mercadolibre.cl/mclics/clicks/external/MLC/count?a=TeDz3k9oGx3s4pxpa7idivc%2FIfcTUJzyDTNkHeCf%2FgoI9J5DesUEyHneoRD2JCvoYEOuoO84prboXD%2Fmly8RwYH4YTuYyxh4YlA7ziV1Zzhr1j4Cam5t1Um8W%2F9Rt8pRtUR4SwOQrr9ccavdWmIwM4Cg%2BwuRmLvhXiGqsRa8WTUOWyhxut5RLClPzxsRMoqAIz1GfK7KZNnGOPmYamlN05CD026UhpjmIHUAY0KkbWdfswsX8YRFV6IHkpktleumLJFGbqYyL0Z%2FuGBCB4ki6w0rsSK2PHEl8yuTq1ldfOoulIAlku3eueYatAIoKT553JqqISX%2FRGKzg7l6pgsPVjo%2Ftt3Nj0VgJjmXhJT4nQS3fd6WWzp8nrDXcTFyAvYjJcCIWOJrauW2hGvhSgRdL6pI46vuNqRYQO462uw8T20cMTUTXzvoczXr0LWWMjY1g13SqNeml2vJmh9ci9JstdTW7e8pdKAnIMUCNY6S5YDNHeT5jI0fFv2Cchhf6uM3FLAxyW1%2FnVXetCYEDAEwq%2Fye%2FuAStR3VKArvz44TsYa3d%2B48U6ycd9SYinT6Nu%2BShb4qKVX9OUqaKKh%2BCxVaNtF4MpZKWjQZEfzmJfFmP73mOVQia7Li1Yn4pqODUMHbM24PHChHLKg94g9GkrQ4NKdTgrWgJxZUEm7Nel8O21EWchpU3Nq6gmYIA8GwgNPvaWdyUZWhy29y2ZRvx9%2BkNyG7UD6jeCaws%2FXmacRSpHw2VfX7tYQpJiMWK0MyyTr0SlcfYLZDSVKDTXg3G%2FgLjklZ8wzgCIz8EJ0Q%2B0LXwODuG0ZVLr9KWp9Ynk2g8Z3wNKpG9dyrfZIU4EKpWSyt8l6n2aUNvwrgkCyBrZRHjSrTlkyqPhtffnp2%2Fj8OJgcNtWyaGQsSoxlJKbTwAKcTysmPxJr%2FmngjaVPEbOfywZ4DMeb9uF3WqXwycG5IYIqH%2FxUjrozfkILJTHcYC5SgOKY%3D&pdp_filters=item_id%3AMLC1616856319#polycard_client=search-desktop&is_advertising=true&searchVariation=MLCU3194951628&backend_model=search-backend&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=4&type=pad&tracking_id=893253a9-5e30-482f-a12f-de635c42b10e&wid=MLC1616856319&sid=search" target="_blank" rel="noopener sponsored">Ver en Mercado Libre ↗</a></div>
+      <div class="prod rv" style="--d:1"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 9V3h10v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M7 14h10v7H7z"/></svg></div><h3>Impresora de boletas 58 mm</h3><p>Impresora USB de rollo de 58 mm para boletas y tickets.</p><a class="btn btn-ml" href="https://www.mercadolibre.cl/impresora-boletas-usb-rollo-58mm-tickets-recibo/p/MLC40655441#polycard_client=search-desktop&be_origin=backend&overlay_label=not_apply&search_layout=grid&position=6&type=product&tracking_id=bbdc489a-3083-4aa0-99a9-039ef29b1c2b&wid=MLC4111275014&sid=search" target="_blank" rel="noopener sponsored">Ver en Mercado Libre ↗</a></div>
+      <div class="prod rv" style="--d:2"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"/><path d="M7 9v6M10 9v6M13 9v6M16 9v6"/></svg></div><h3>Lector de códigos de barras</h3><p>Lector inalámbrico 2.4G con conexión USB para tu mostrador.</p><a class="btn btn-ml" href="https://www.mercadolibre.cl/lector-escaner-de-codigo-de-barras-inalambrico-24g-pistola-color-negro-tipo-de-conector-del-cable-usb/p/MLC37883561?pdp_filters=item_id%3AMLC2534781610&from=gshop&matt_tool=31981837&matt_word=&matt_source=google&matt_campaign_id=22116391419&matt_ad_group_id=192538753376&matt_match_type=&matt_network=g&matt_device=c&matt_creative=794146495131&matt_keyword=&matt_ad_position=&matt_ad_type=pla&matt_merchant_id=735119080&matt_product_id=MLC37883561-product&matt_product_partition_id=2494470287653&matt_target_id=aud-2485766214916:pla-2494470287653&cq_src=google_ads&cq_cmp=22116391419&cq_net=g&cq_plt=gp&cq_med=pla&gad_source=1&gad_campaignid=22116391419&gbraid=0AAAAADxxu6oHSxTMRCMjucQL0fSMxKui-&gclid=CjwKCAjw_pzWBhAkEiwAwDCi1ezKZAfhIio2BZYDR-EzXNzTVBc1Nxbg34GnMm9fWz5Wokl7LwWhjRoCzLwQAvD_BwE" target="_blank" rel="noopener sponsored">Ver en Mercado Libre ↗</a></div>
+    </div>
+    <p class="equipo-nota rv">Son enlaces a Mercado Libre. Compra donde prefieras: NexoPOS funciona con impresoras térmicas de 58 y 80 mm.</p>
   </div>
 </section>
 
@@ -627,25 +666,6 @@
   }
   // la pantalla se endereza al bajar
   addEventListener('scroll', () => { const t = Math.min(1, scrollY / 420); if (!hs.matches(':hover') && !stage.matches(':hover')) hs.style.setProperty('--rx', (12 * (1 - t)) + 'deg'); }, { passive: true });
-
-  // recorrido interactivo
-  const pasos = [...document.querySelectorAll('#pasos .paso')], visor = document.getElementById('visorImg');
-  let actual = 0, timer = null, manual = false;
-  function ir(i, esManual) {
-    actual = i; if (esManual) manual = true;
-    pasos.forEach((p, k) => { p.classList.toggle('on', k === i); p.classList.toggle('auto', k === i && !manual); });
-    const p = pasos[i];
-    visor.classList.add('fuera');
-    setTimeout(() => { visor.src = p.dataset.img; visor.alt = p.dataset.alt; visor.onload = () => visor.classList.remove('fuera'); setTimeout(() => visor.classList.remove('fuera'), 300); }, 180);
-    clearTimeout(timer);
-    if (!manual && !reduce) timer = setTimeout(() => ir((actual + 1) % pasos.length), 5500);
-  }
-  pasos.forEach((p, i) => p.addEventListener('click', () => ir(i, true)));
-  const tourIO = new IntersectionObserver((es) => es.forEach(e => {
-    if (e.isIntersecting && !manual && !reduce) { clearTimeout(timer); timer = setTimeout(() => ir((actual + 1) % pasos.length), 5500); pasos[actual].classList.add('auto'); }
-    else if (!e.isIntersecting) { clearTimeout(timer); pasos[actual].classList.remove('auto'); }
-  }), { threshold: .35 });
-  tourIO.observe(document.getElementById('pasos'));
 
   // pestañas de rubros con píldora deslizante
   const tabs = [...document.querySelectorAll('#tabs [role=tab]')], pill = document.getElementById('pill');
