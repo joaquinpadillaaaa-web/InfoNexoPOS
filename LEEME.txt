@@ -2,6 +2,4 @@ Página de presentación de NexoPOS (sitio aparte de la app)
 
 1. Sube esta carpeta a un proyecto NUEVO de Cloudflare Pages (o a otro repositorio de GitHub).
    No la mezcles con los archivos de la app: tienen el mismo nombre index.html.
-2. Abre index.html y busca "CONTACTO" (casi al final): escribe tu número de WhatsApp
-   (ej: '56912345678'). Mientras esté vacío, los botones usan tu correo.
-3. Precios: están escritos en el HTML (busca 15.990 y 19.990). Cámbialos a gusto.
+2. WhatsApp, correo e Instagram están en el bloque CONTACTO, casi al final de index.html.
