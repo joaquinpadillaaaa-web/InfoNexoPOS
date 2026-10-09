@@ -189,6 +189,22 @@
   .pair { display: grid; gap: 14px; }
   .pair .shot.tk { width: 30%; margin-left: auto; margin-top: -150px; margin-right: -10px; position: relative; }
 
+
+  /* quiénes somos */
+  .somos { display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px; align-items: start; }
+  .somos h2 { margin-top: 12px; }
+  .somos h2 em { font-style: normal; color: var(--brand); }
+  .somos .txt p { color: var(--muted); font-size: 17.5px; margin: 0 0 18px; }
+  .somos .txt p:first-child { color: var(--ink); font-size: 20px; font-weight: 600; line-height: 1.5; }
+  .valores { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 44px; }
+  .valor { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 24px; transition: transform .35s var(--ease), border-color .3s, box-shadow .35s; position: relative; overflow: hidden; }
+  .valor:hover { transform: translateY(-6px); border-color: var(--brand); box-shadow: 0 24px 40px -26px rgba(229,83,10,.55); }
+  .valor i { font-style: normal; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 13px; background: var(--brand); color: #fff; font-size: 20px; margin-bottom: 14px; }
+  .valor b { display: block; font-size: 18px; margin-bottom: 4px; }
+  .valor p { margin: 0; color: var(--muted); font-size: 15px; }
+  .firma { margin-top: 26px; font-weight: 800; font-size: 17px; display: flex; align-items: center; gap: 12px; }
+  .firma::before { content: ''; width: 36px; height: 3px; background: var(--brand); border-radius: 2px; }
+
   /* a tu medida */
   .medida { background: var(--card); border: 1px solid var(--line); border-radius: 28px; padding: clamp(30px, 5vw, 60px); display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center; position: relative; overflow: hidden; }
   .medida::after { content: ''; position: absolute; width: 360px; height: 360px; right: -120px; top: -140px; border-radius: 50%; background: radial-gradient(circle, rgba(229,83,10,.22), transparent 70%); }
@@ -247,7 +263,8 @@
 
   @media (max-width: 900px) {
     nav.links a:not(.btn):not(.ig-ico) { display: none; }
-    .tour, .ben-item, .panel.on, .medida { grid-template-columns: 1fr; gap: 24px; }
+    .tour, .ben-item, .panel.on, .medida, .somos { grid-template-columns: 1fr; gap: 24px; }
+    .valores { grid-template-columns: 1fr; }
     .ben-item:nth-child(even) .ben-txt { order: 0; }
     .planes { grid-template-columns: 1fr; }
     .pair .shot.tk { width: 38%; margin-top: -110px; margin-right: 0; }
@@ -280,6 +297,7 @@
     <nav class="links">
       <a href="#recorrido">Cómo funciona</a>
       <a href="#rubros">Restaurantes y comercios</a>
+      <a href="#somos">Quiénes somos</a>
       <a href="#medida">A tu medida</a>
       <a href="#preguntas">Preguntas</a>
       <a class="ig-ico" href="https://instagram.com/nexo_pos_" target="_blank" rel="noopener" aria-label="Instagram de NexoPOS"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
@@ -441,6 +459,29 @@
         <div class="shot hov"><div class="bar"><i></i><i></i><i></i></div><img src="img/pos-tienda.jpg" loading="lazy" width="1366" height="639" alt="Punto de venta de una tienda con ventas en espera"></div>
         <div class="shot tk"><img src="img/comprobante-tienda.jpg" loading="lazy" width="304" height="475" alt="Comprobante de venta de una tienda"></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIÉNES SOMOS -->
+<section id="somos">
+  <div class="wrap">
+    <div class="somos">
+      <div class="rv izq">
+        <span class="kicker">¿Quiénes somos?</span>
+        <h2>Estudiantes de psicología que creen que la tecnología también debe ser <em>humana</em></h2>
+      </div>
+      <div class="txt rv der">
+        <p>NexoPOS nació de una pregunta simple: ¿por qué los sistemas para vender son tan caros y tan difíciles justo para quienes más los necesitan?</p>
+        <p>Somos un equipo de estudiantes de psicología, y nuestro trabajo es entender a las personas: cómo se mueve un garzón en la hora punta, qué siente un dueño cuando la caja no cuadra, por qué un sistema complicado termina guardado en un cajón.</p>
+        <p>Con eso en mente creamos algo simple de usar, que se adapta a cada local y que facilita el acceso a más negocios, sin cobrar de más.</p>
+        <div class="firma">Detrás de cada sistema hay personas. Nos importan las tuyas.</div>
+      </div>
+    </div>
+    <div class="valores">
+      <div class="valor rv" style="--d:0"><i>💬</i><b>Cerca de ti</b><p>Hablamos contigo, no con un formulario. Te escuchamos y te acompañamos.</p></div>
+      <div class="valor rv" style="--d:1"><i>🧩</i><b>Simple de usar</b><p>Si tu equipo lo entiende en minutos, hicimos bien nuestro trabajo.</p></div>
+      <div class="valor rv" style="--d:2"><i>🤝</i><b>Precio justo</b><p>Queremos que cualquier local pueda tener un buen sistema, sin pagar de más.</p></div>
     </div>
   </div>
 </section>
