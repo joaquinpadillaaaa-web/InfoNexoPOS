@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NexoPOS · Sistema de ventas para restaurantes y comercios</title>
+<meta name="description" content="Punto de venta en línea para restaurantes y comercios en Chile. Mesas, comandas, caja y reportes en un solo lugar, desde cualquier dispositivo y sin instalar nada.">
+<meta name="theme-color" content="#f4ecdc">
+<meta property="og:title" content="NexoPOS · Todo lo que necesitas para tu negocio en un solo lugar">
+<meta property="og:description" content="Punto de venta en línea para restaurantes y comercios. Sin instalar nada, con tu impresora actual.">
+<meta property="og:image" content="img/pos-restaurante.jpg">
+<link rel="icon" type="image/svg+xml" href="logo.svg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4ecdc; --bg2: #ece1cc; --card: #fffdf8; --ink: #1c1712; --muted: #6f6556; --line: #dccfb5;
+    --brand: #e5530a; --brand-d: #c2410c; --brand-soft: #fde7d6; --dark: #1c1712; --dark-ink: #f7efe0;
+    --ok: #15803d;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'Plus Jakarta Sans', system-ui, sans-serif; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  .wrap { width: min(1120px, 100% - 40px); margin-inline: auto; }
+  .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+
+  /* barra superior */
+  header.top { position: sticky; top: 0; z-index: 20; background: rgba(244,236,220,.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  header.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; letter-spacing: .01em; font-size: 18px; }
+  .logo img { width: 34px; height: 34px; border-radius: 9px; }
+  .logo b { color: var(--brand); }
+  nav.links { display: flex; align-items: center; gap: 26px; font-size: 14px; font-weight: 600; color: var(--muted); }
+  nav.links a { text-decoration: none; }
+  nav.links a:hover { color: var(--ink); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 20px; border-radius: 12px; font: inherit; font-weight: 700; font-size: 15px; text-decoration: none; border: 1.5px solid transparent; cursor: pointer; transition: transform .12s, background .15s; }
+  .btn:active { transform: translateY(1px); }
+  .btn-main { background: var(--brand); color: #fff; box-shadow: 0 6px 16px rgba(229,83,10,.28); }
+  .btn-main:hover { background: var(--brand-d); }
+  .btn-ghost { border-color: var(--ink); color: var(--ink); background: transparent; }
+  .btn-ghost:hover { background: var(--ink); color: var(--dark-ink); }
+  .btn-sm { padding: 9px 16px; font-size: 14px; }
+
+  /* portada */
+  .hero { padding: 64px 0 40px; }
+  .hero .txt { max-width: 760px; }
+  .kicker { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--brand-d); }
+  .kicker::before { content: ''; width: 22px; height: 2px; background: var(--brand); }
+  h1 { font-size: clamp(34px, 5.4vw, 60px); line-height: 1.04; letter-spacing: -.025em; margin: 14px 0 18px; font-weight: 800; text-wrap: balance; }
+  h1 em { font-style: normal; color: var(--brand); }
+  .lead { font-size: clamp(17px, 2vw, 20px); color: var(--muted); max-width: 620px; margin: 0 0 28px; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .cta small { color: var(--muted); font-size: 13px; }
+  .checks { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 26px 0 0; padding: 0; list-style: none; font-size: 14px; font-weight: 600; }
+  .checks li::before { content: '✓'; color: var(--ok); font-weight: 800; margin-right: 7px; }
+
+  /* marco de pantalla */
+  .shot { background: #fff; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; box-shadow: 0 30px 60px -28px rgba(70,45,10,.45), 0 8px 18px -10px rgba(70,45,10,.25); }
+  .shot .bar { height: 30px; background: var(--bg2); border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 6px; padding: 0 12px; }
+  .shot .bar i { width: 10px; height: 10px; border-radius: 50%; background: #cdbd9e; }
+  .shot img { width: 100%; height: auto; }
+  .hero .shot { margin-top: 46px; }
+
+  section { padding: 76px 0; }
+  .sec-head { max-width: 640px; margin-bottom: 40px; }
+  h2 { font-size: clamp(27px, 3.6vw, 40px); line-height: 1.1; letter-spacing: -.02em; margin: 12px 0 12px; font-weight: 800; text-wrap: balance; }
+  .sec-head p { color: var(--muted); font-size: 17px; margin: 0; }
+
+  /* beneficios */
+  .ben { display: grid; gap: 64px; }
+  .ben-item { display: grid; grid-template-columns: 1fr 1.25fr; gap: 44px; align-items: center; }
+  .ben-item:nth-child(even) .ben-txt { order: 2; }
+  .num { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--brand); font-size: 14px; }
+  .ben-txt h3 { font-size: clamp(22px, 2.6vw, 30px); line-height: 1.15; margin: 8px 0 10px; letter-spacing: -.015em; }
+  .ben-txt p { color: var(--muted); margin: 0 0 14px; font-size: 16.5px; }
+  .ben-txt ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; font-size: 15px; font-weight: 600; }
+  .ben-txt li::before { content: '→'; color: var(--brand); margin-right: 9px; font-weight: 800; }
+
+  /* rubros */
+  .rubros { background: var(--dark); color: var(--dark-ink); }
+  .rubros .kicker { color: #ffb27a; } .rubros .kicker::before { background: #ffb27a; }
+  .rubros .sec-head p { color: #c9bda6; }
+  .tabs { display: inline-flex; background: #2b241c; border-radius: 14px; padding: 5px; gap: 4px; margin-bottom: 34px; }
+  .tabs button { font: inherit; font-weight: 700; font-size: 15px; padding: 10px 22px; border-radius: 10px; border: 0; cursor: pointer; background: transparent; color: #c9bda6; }
+  .tabs button[aria-selected="true"] { background: var(--brand); color: #fff; }
+  .panel { display: none; grid-template-columns: 1fr 1.3fr; gap: 44px; align-items: center; }
+  .panel.on { display: grid; }
+  .panel h3 { font-size: clamp(22px, 2.6vw, 30px); margin: 0 0 14px; letter-spacing: -.015em; }
+  .panel ul { margin: 0 0 24px; padding: 0; list-style: none; display: grid; gap: 10px; }
+  .panel li { display: flex; gap: 10px; font-size: 16px; color: #e8dec9; }
+  .panel li::before { content: '✓'; color: #ffb27a; font-weight: 800; }
+  .rubros .shot { border-color: #3a3025; }
+  .pair { display: grid; gap: 14px; }
+  .pair .shot.tk { width: 30%; margin-left: auto; margin-top: -150px; margin-right: -10px; }
+
+  /* precios */
+  .precios { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; max-width: 820px; }
+  .plan { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 30px; display: flex; flex-direction: column; }
+  .plan.dest { border: 2px solid var(--brand); box-shadow: 0 18px 40px -22px rgba(229,83,10,.5); position: relative; }
+  .plan .tag { position: absolute; top: -13px; left: 26px; background: var(--brand); color: #fff; font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; padding: 4px 12px; border-radius: 99px; }
+  .plan h3 { margin: 0; font-size: 20px; }
+  .plan .sub { color: var(--muted); font-size: 14px; margin: 2px 0 18px; }
+  .precio { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 42px; letter-spacing: -.03em; line-height: 1; }
+  .precio small { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 15px; color: var(--muted); letter-spacing: 0; }
+  .plan ul { list-style: none; padding: 0; margin: 22px 0 26px; display: grid; gap: 9px; font-size: 15px; flex: 1; }
+  .plan li::before { content: '✓'; color: var(--ok); font-weight: 800; margin-right: 9px; }
+  .plan .btn { width: 100%; }
+  .nota { margin-top: 22px; color: var(--muted); font-size: 14.5px; max-width: 820px; }
+
+  /* faq */
+  .faq { max-width: 780px; display: grid; gap: 10px; }
+  details { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 0 20px; }
+  summary { cursor: pointer; font-weight: 700; font-size: 16.5px; padding: 18px 0; list-style: none; display: flex; justify-content: space-between; gap: 14px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: '+'; font-size: 22px; line-height: 1; color: var(--brand); font-weight: 600; }
+  details[open] summary::after { content: '–'; }
+  details p { margin: 0 0 18px; color: var(--muted); font-size: 15.5px; }
+
+  /* cierre */
+  .final { background: var(--brand); color: #fff; text-align: center; }
+  .final h2 { color: #fff; margin: 0 auto 12px; max-width: 700px; }
+  .final p { margin: 0 auto 28px; max-width: 520px; opacity: .92; font-size: 17px; }
+  .final .btn-w { background: #fff; color: var(--brand-d); }
+  .final .btn-w:hover { background: var(--dark); color: #fff; }
+  .final .btn-o { border-color: rgba(255,255,255,.7); color: #fff; }
+  .final .btn-o:hover { background: rgba(255,255,255,.14); }
+  .final .cta { justify-content: center; }
+  .contacto { margin-top: 22px; font-size: 14.5px; opacity: .9; }
+
+  footer { padding: 30px 0 40px; color: var(--muted); font-size: 14px; }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+
+  .wa-fab { position: fixed; right: 18px; bottom: 18px; z-index: 30; display: none; }
+
+  @media (max-width: 880px) {
+    nav.links a:not(.btn) { display: none; }
+    .ben-item, .panel.on { grid-template-columns: 1fr; gap: 22px; }
+    .ben-item:nth-child(even) .ben-txt { order: 0; }
+    .precios { grid-template-columns: 1fr; }
+    .pair .shot.tk { width: 38%; margin-top: -110px; margin-right: 0; }
+    section { padding: 56px 0; }
+    .hero { padding-top: 40px; }
+    .wa-fab { display: block; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn { transition: none; } }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#"><img src="logo.svg" alt="" width="34" height="34"><span>NEXO<b>POS</b></span></a>
+    <nav class="links">
+      <a href="#beneficios">Beneficios</a>
+      <a href="#rubros">Restaurantes y comercios</a>
+      <a href="#precios">Precios</a>
+      <a href="#preguntas">Preguntas</a>
+      <a class="btn btn-main btn-sm" href="#contacto" data-contacto="Hola, quiero probar NexoPOS gratis.">Probar gratis</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- PORTADA -->
+<div class="hero">
+  <div class="wrap">
+    <div class="txt">
+      <span class="kicker">Sistema de ventas para comercios</span>
+      <h1>Todo lo que necesitas para tu negocio <em>en un solo lugar</em></h1>
+      <p class="lead">Toma pedidos, cobra, cierra la caja y mira cuánto vendiste, desde el computador, la tablet o el celular. Sin instalar nada y sin contratos largos.</p>
+      <div class="cta">
+        <a class="btn btn-main" href="#contacto" data-contacto="Hola, quiero probar NexoPOS gratis.">Probar gratis</a>
+        <a class="btn btn-ghost" href="#precios">Ver precios</a>
+      </div>
+      <ul class="checks">
+        <li>Sin instalar nada</li>
+        <li>Funciona con tu impresora térmica</li>
+        <li>Hecho en Chile, en pesos</li>
+      </ul>
+    </div>
+    <div class="shot"><div class="bar"><i></i><i></i><i></i></div><img src="img/pos-restaurante.jpg" width="1366" height="639" alt="Punto de venta de NexoPOS con la carta de un restaurante y el ticket de una mesa"></div>
+  </div>
+</div>
+
+<!-- BENEFICIOS -->
+<section id="beneficios">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">Lo importante</span>
+      <h2>Tres cosas que cambian tu día a día</h2>
+      <p>No necesitas aprender veinte funciones. Con estas tres ya trabajas más rápido y con más orden.</p>
+    </div>
+    <div class="ben">
+      <div class="ben-item">
+        <div class="ben-txt">
+          <span class="num">01</span>
+          <h3>Vende más rápido</h3>
+          <p>Tus garzones toman el pedido en la mesa desde el celular o la tablet y llega directo a cocina y barra. Se acabaron los papelitos perdidos y los pedidos mal entendidos.</p>
+          <ul><li>Plano de mesas con colores en vivo</li><li>Comandas separadas para cocina y barra</li><li>Reservas con hora, visibles desde el plano</li></ul>
+        </div>
+        <div class="shot"><div class="bar"><i></i><i></i><i></i></div><img src="img/mesas.jpg" loading="lazy" width="1366" height="639" alt="Plano de mesas con una mesa reservada a las 21:00"></div>
+      </div>
+      <div class="ben-item">
+        <div class="ben-txt">
+          <span class="num">02</span>
+          <h3>Controla la caja sin sorpresas</h3>
+          <p>Mira en cualquier momento cuánto entró en efectivo, tarjeta y transferencia, y cierra el turno en un minuto. El detalle queda guardado, con quién vendió qué.</p>
+          <ul><li>Efectivo que debería haber en la caja</li><li>Cierre del turno y resumen por WhatsApp</li><li>Cada venta queda registrada con su vendedor</li></ul>
+        </div>
+        <div class="shot"><div class="bar"><i></i><i></i><i></i></div><img src="img/caja.jpg" loading="lazy" width="1366" height="639" alt="Pantalla de caja con total vendido y desglose por medio de pago"></div>
+      </div>
+      <div class="ben-item">
+        <div class="ben-txt">
+          <span class="num">03</span>
+          <h3>Entiende tu negocio con números claros</h3>
+          <p>Ventas por día, por hora y por producto, con comparación contra el período anterior. Descubre qué se vende más, qué día conviene reforzar y qué no se mueve.</p>
+          <ul><li>Reportes por día, semana y mes</li><li>Lo más vendido y ventas por vendedor</li><li>Descarga todo en una planilla</li></ul>
+        </div>
+        <div class="shot"><div class="bar"><i></i><i></i><i></i></div><img src="img/reportes.jpg" loading="lazy" width="1366" height="639" alt="Reporte de ventas con gráfico de ventas por día"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RUBROS -->
+<section class="rubros" id="rubros">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">Para tu rubro</span>
+      <h2>Un sistema, dos formas de trabajar</h2>
+      <p>NexoPOS se adapta a cómo vendes: con mesas y cocina, o con mostrador y códigos de barras.</p>
+    </div>
+    <div class="tabs" role="tablist">
+      <button role="tab" aria-selected="true" aria-controls="p-rest" id="t-rest">Restaurantes y cafés</button>
+      <button role="tab" aria-selected="false" aria-controls="p-tienda" id="t-tienda">Tiendas y comercios</button>
+    </div>
+
+    <div class="panel on" id="p-rest" role="tabpanel" aria-labelledby="t-rest">
+      <div>
+        <h3>Del garzón a la cocina, sin papeles</h3>
+        <ul>
+          <li>Mesas, terraza y barra en un plano que tú mismo armas</li>
+          <li>Comandas por estación, con tiempos y estados</li>
+          <li>Propina sugerida, cuentas divididas y pre-cuenta</li>
+          <li>Carta con variantes, notas por plato y control de inventario</li>
+          <li>Cada puesto (garzón, cajero, cocina) ve solo lo que le corresponde</li>
+        </ul>
+        <a class="btn btn-main" href="#contacto" data-contacto="Hola, quiero probar NexoPOS para mi restaurante.">Probar gratis</a>
+      </div>
+      <div class="shot"><div class="bar"><i></i><i></i><i></i></div><img src="img/comandas.jpg" loading="lazy" width="1366" height="639" alt="Pantalla de comandas con pedidos pendientes, en preparación y listos"></div>
+    </div>
+
+    <div class="panel" id="p-tienda" role="tabpanel" aria-labelledby="t-tienda">
+      <div>
+        <h3>Mostrador rápido, inventario al día</h3>
+        <ul>
+          <li>Escanea el código de barras o busca por nombre</li>
+          <li>Varias ventas en espera a la vez, para no hacer fila</li>
+          <li>Descuentos y anulaciones que piden clave al vendedor</li>
+          <li>Inventario con aviso de stock bajo y etiquetas de precio</li>
+          <li>Comprobante de venta impreso o por WhatsApp</li>
+        </ul>
+        <a class="btn btn-main" href="#contacto" data-contacto="Hola, quiero probar NexoPOS para mi tienda.">Probar gratis</a>
+      </div>
+      <div class="pair">
+        <div class="shot"><div class="bar"><i></i><i></i><i></i></div><img src="img/pos-tienda.jpg" loading="lazy" width="1366" height="639" alt="Punto de venta de una tienda con ventas en espera y productos con código de barras"></div>
+        <div class="shot tk"><img src="img/comprobante-tienda.jpg" loading="lazy" width="304" height="475" alt="Comprobante de venta de una tienda"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRECIOS -->
+<section id="precios">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">Precios</span>
+      <h2>Un precio simple, sin letra chica</h2>
+      <p>Pagas una cuota mensual por local. Sin comisión por venta y sin permanencia mínima.</p>
+    </div>
+    <div class="precios">
+      <div class="plan">
+        <h3>Comercio</h3>
+        <div class="sub">Tiendas, minimarkets, kioscos</div>
+        <div class="precio" data-precio="15990">$15.990 <small>/ mes</small></div>
+        <ul>
+          <li>Ventas con código de barras</li>
+          <li>Inventario y etiquetas de precio</li>
+          <li>Caja, cierre diario y reportes</li>
+          <li>Usuarios con clave para tu equipo</li>
+          <li>Soporte por WhatsApp</li>
+        </ul>
+        <a class="btn btn-ghost" href="#contacto" data-contacto="Hola, quiero probar NexoPOS Comercio.">Probar gratis</a>
+      </div>
+      <div class="plan dest">
+        <span class="tag">Más pedido</span>
+        <h3>Restaurante</h3>
+        <div class="sub">Restaurantes, cafés, locales de comida</div>
+        <div class="precio" data-precio="19990">$19.990 <small>/ mes</small></div>
+        <ul>
+          <li>Todo lo del plan Comercio</li>
+          <li>Plano de mesas y reservas</li>
+          <li>Comandas para cocina y barra</li>
+          <li>Garzones con acceso desde su celular</li>
+          <li>Propinas y cuentas divididas</li>
+        </ul>
+        <a class="btn btn-main" href="#contacto" data-contacto="Hola, quiero probar NexoPOS Restaurante.">Probar gratis</a>
+      </div>
+    </div>
+    <p class="nota">Pruébalo sin costo antes de decidir. Si no es para ti, no pagas nada.</p>
+  </div>
+</section>
+
+<!-- PREGUNTAS -->
+<section id="preguntas" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><span class="kicker">Preguntas frecuentes</span><h2>Lo que más nos preguntan</h2></div>
+    <div class="faq">
+      <details><summary>¿Necesito instalar algo?</summary><p>No. NexoPOS funciona desde el navegador, en computador, tablet o celular. Si quieres, puedes agregarlo a la pantalla de inicio y se abre como una app.</p></details>
+      <details><summary>¿Necesito internet? ¿Qué pasa si se corta?</summary><p>Necesitas internet para sincronizar los equipos entre sí. Si la conexión se corta un momento, el equipo guarda lo que haces y lo sube cuando vuelve. Te recomendamos tener un respaldo de datos móviles para la caja.</p></details>
+      <details><summary>¿Cuánto cuesta?</summary><p>Desde $15.990 al mes por local. Sin comisión por venta y sin costos de instalación.</p></details>
+      <details><summary>¿Puedo cancelar cuando quiera?</summary><p>Sí. No hay contrato de permanencia: si dejas de usarlo, dejas de pagar. Además puedes descargar tus datos cuando quieras.</p></details>
+      <details><summary>¿Funciona con mi impresora?</summary><p>Funciona con impresoras térmicas de boletas y de comandas, que son las más usadas en locales. Te ayudamos a dejarla andando.</p></details>
+      <details><summary>¿Mis datos están seguros?</summary><p>Tus datos se guardan en la nube de Google, separados por local. Cada persona entra con su usuario y clave, y cada puesto ve solo lo que el administrador le permite.</p></details>
+      <details><summary>¿Emite boleta electrónica del SII?</summary><p>Hoy NexoPOS entrega un comprobante interno de venta, no la boleta electrónica del SII. Si necesitas boleta electrónica, puedes seguir usando tu sistema de facturación para eso.</p></details>
+      <details><summary>¿Cuánto demora empezar?</summary><p>Lo normal es partir el mismo día: cargas tu carta o tus productos, creas los usuarios de tu equipo y ya puedes vender. Si quieres, te acompañamos en la puesta en marcha.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CIERRE -->
+<section class="final" id="contacto">
+  <div class="wrap">
+    <h2>Pruébalo en tu negocio esta semana</h2>
+    <p>Escríbenos, te creamos tu local con datos de ejemplo y lo pruebas sin pagar.</p>
+    <div class="cta">
+      <a class="btn btn-w" id="btnWA" href="#" data-contacto="Hola, quiero probar NexoPOS gratis.">Escribir por WhatsApp</a>
+      <a class="btn btn-o" id="btnMail" href="#">Escribir por correo</a>
+    </div>
+    <div class="contacto"><span id="txtContacto"></span></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© NexoPOS 2026 · Hecho en Chile</span>
+    <span><a href="https://nexopos.pages.dev" style="text-decoration:none;font-weight:700">Ingresar al sistema →</a></span>
+  </div>
+</footer>
+
+<a class="btn btn-main wa-fab" href="#" data-contacto="Hola, quiero probar NexoPOS gratis.">Escribir por WhatsApp</a>
+
+<script>
+  // ====== Datos de contacto: edítalos aquí ======
+  const CONTACTO = {
+    whatsapp: '',                              // ej: '56912345678' (código de país, sin + ni espacios)
+    correo: 'contactonexopos@gmail.com'
+  };
+  // ===============================================
+  const wa = (t) => CONTACTO.whatsapp ? `https://wa.me/${CONTACTO.whatsapp}?text=${encodeURIComponent(t)}` : `mailto:${CONTACTO.correo}?subject=${encodeURIComponent('Quiero probar NexoPOS')}&body=${encodeURIComponent(t)}`;
+  document.querySelectorAll('[data-contacto]').forEach(a => {
+    if (a.getAttribute('href') === '#contacto') { if (CONTACTO.whatsapp) { a.href = wa(a.dataset.contacto); a.target = '_blank'; a.rel = 'noopener'; } }
+    else { a.href = wa(a.dataset.contacto); if (CONTACTO.whatsapp) { a.target = '_blank'; a.rel = 'noopener'; } }
+  });
+  document.getElementById('btnMail').href = `mailto:${CONTACTO.correo}?subject=${encodeURIComponent('Quiero probar NexoPOS')}`;
+  document.getElementById('txtContacto').textContent = CONTACTO.whatsapp ? `${CONTACTO.correo} · +${CONTACTO.whatsapp}` : CONTACTO.correo;
+  if (!CONTACTO.whatsapp) { document.getElementById('btnWA').style.display = 'none'; document.querySelector('.wa-fab').textContent = 'Escribir por correo'; }
+
+  // pestañas de rubros
+  const tabs = [...document.querySelectorAll('.tabs [role=tab]')];
+  tabs.forEach(t => t.addEventListener('click', () => {
+    tabs.forEach(x => { const on = x === t; x.setAttribute('aria-selected', on); document.getElementById(x.getAttribute('aria-controls')).classList.toggle('on', on); });
+  }));
+</script>
+</body>
+</html>
