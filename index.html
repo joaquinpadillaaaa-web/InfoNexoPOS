@@ -94,10 +94,27 @@
   .chip i { width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center; font-style: normal; font-size: 15px; background: var(--bg); }
   .chip small { display: block; font-weight: 500; color: var(--muted); font-size: 11.5px; line-height: 1.2; }
   .chip.c1 { left: -14px; top: 22%; animation-delay: 1.5s, 1.5s; }
-  .chip.c2 { right: -10px; top: 40%; animation-delay: 1.8s, 2.4s; }
+  .chip.c2 { right: 21%; top: 12%; animation-delay: 1.8s, 2.4s; }
   .chip.c3 { left: 6%; bottom: 14%; animation-delay: 2.1s, 3.1s; }
   @keyframes pop { from { opacity: 0; transform: translateY(14px) scale(.9); } to { opacity: 1; transform: none; } }
   @keyframes flota { 50% { translate: 0 -9px; } }
+
+
+  /* celulares y recibo real */
+  .phone { background: #0f0c09; border-radius: 34px; padding: 9px; box-shadow: 0 40px 70px -24px rgba(0,0,0,.65), inset 0 0 0 1.5px #3a3025; width: 100%; }
+  .phone img { border-radius: 26px; width: 100%; height: auto; }
+  .stage .phone { position: absolute; right: 5%; bottom: -70px; width: 205px; z-index: 4; opacity: 0; animation: pop .9s 1.2s var(--ease) forwards, flota 7s 2.2s ease-in-out infinite; }
+  .local { display: grid; grid-template-columns: 250px 250px 1fr; gap: 40px; align-items: center; justify-content: center; }
+  .local .phone { max-width: 250px; }
+  .local .phone { transition: transform .5s var(--ease); }
+  .local .phone:nth-child(1) { transform: rotate(-3deg) translateY(10px); }
+  .local .phone:nth-child(2) { transform: rotate(2.5deg) translateY(-14px); }
+  .local .phone:hover { transform: rotate(0) translateY(-10px) scale(1.03); }
+  .pcap { text-align: center; margin-top: 16px; font-size: 14px; font-weight: 700; color: var(--muted); }
+  .recibo { position: relative; display: grid; place-items: center; padding: 34px 20px; border-radius: 26px; background: radial-gradient(circle at 50% 30%, #fff7e8, var(--bg2)); border: 1px solid var(--line); overflow: hidden; }
+  .recibo::before { content: ''; position: absolute; width: 260px; height: 260px; border-radius: 50%; right: -90px; top: -90px; background: radial-gradient(circle, rgba(229,83,10,.25), transparent 70%); }
+  .recibo img { position: relative; width: min(100%, 210px); height: auto; transform: rotate(2.5deg); filter: drop-shadow(0 22px 22px rgba(70,45,10,.35)); transition: transform .6s var(--ease); }
+  .recibo:hover img { transform: rotate(0) scale(1.03); }
 
   /* cinta */
   .cinta { background: var(--brand); color: #fff; overflow: hidden; border-block: 1px solid rgba(0,0,0,.12); }
@@ -237,6 +254,10 @@
     section { padding: 60px 0; }
     .hero { padding-top: 112px; }
     .chip { display: none; }
+    .stage .phone { width: 128px; right: 4%; bottom: -46px; }
+    .local { grid-template-columns: 1fr 1fr; gap: 20px; }
+    .local .phone { max-width: 200px; margin-inline: auto; }
+    .local > div:nth-child(3) { grid-column: 1 / -1; max-width: 320px; margin-inline: auto; }
     .pasos { grid-template-columns: 1fr; }
     .paso p { max-height: 80px; opacity: 1; }
     .stage .shot { --rx: 6deg; }
@@ -290,6 +311,7 @@
       <div class="chip c1"><i>🍽️</i><div>Pedido enviado a cocina<small>Mesa 4 · hace un momento</small></div></div>
       <div class="chip c2"><i>📅</i><div>Mesa 6 reservada<small>Hoy a las 21:00</small></div></div>
       <div class="chip c3"><i>💵</i><div>Caja al día<small>Efectivo, tarjeta y transferencia</small></div></div>
+      <div class="phone"><img src="img/cel-pedido.jpg" width="716" height="1404" alt="El mismo sistema en un celular: ticket de una mesa con el pedido" ></div>
       <div class="shot" id="heroShot"><div class="bar"><i></i><i></i><i></i></div><img src="img/pos-restaurante.jpg" width="1366" height="639" alt="Punto de venta de NexoPOS con la carta de un restaurante y el ticket de una mesa"></div>
     </div>
   </div>
@@ -354,6 +376,22 @@
         </div>
         <div class="shot hov rv der"><div class="bar"><i></i><i></i><i></i></div><img src="img/reportes.jpg" loading="lazy" width="1366" height="639" alt="Reporte de ventas con gráfico por día"></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- EN EL LOCAL -->
+<section id="local" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">En el local, de verdad</span>
+      <h2>El garzón pide desde el celular y la comanda sale en tu impresora</h2>
+      <p>Esto es NexoPOS funcionando en un celular y en una impresora térmica. Capturas y foto reales, sin montajes.</p>
+    </div>
+    <div class="local">
+      <div class="rv" style="--d:0"><div class="phone"><img src="img/cel-carta.jpg" loading="lazy" width="716" height="1404" alt="Carta de productos en un celular"></div><p class="pcap">Elige los productos</p></div>
+      <div class="rv" style="--d:1"><div class="phone"><img src="img/cel-pedido.jpg" loading="lazy" width="716" height="1404" alt="Ticket de la mesa en un celular con el total y el botón de cobrar"></div><p class="pcap">Revisa el ticket y cobra</p></div>
+      <div class="rv" style="--d:2"><div class="recibo"><img src="img/recibo-real.png" loading="lazy" width="540" height="1268" alt="Recibo de venta y comanda de bar impresos en una impresora térmica"></div><p class="pcap">Sale impreso al instante</p></div>
     </div>
   </div>
 </section>
